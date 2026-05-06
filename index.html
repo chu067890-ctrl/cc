@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>生日快乐蔡诗晨！</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="dream-bg" class="dream-bg" aria-hidden="true">
+    <div class="dream-sky-gradient"></div>
+    <div class="dream-bloom dream-bloom-1"></div>
+    <div class="dream-bloom dream-bloom-2"></div>
+    <div class="dream-bloom dream-bloom-3"></div>
+    <div class="dream-moon"></div>
+    <div class="dream-cloud dream-cloud-1"></div>
+    <div class="dream-cloud dream-cloud-2"></div>
+    <div class="dream-cloud dream-cloud-3"></div>
+    <div class="dream-stars"></div>
+    <div class="dream-balloons" aria-hidden="true">
+      <span class="d-balloon db-1"></span>
+      <span class="d-balloon db-2"></span>
+      <span class="d-balloon db-3"></span>
+      <span class="d-balloon db-4"></span>
+      <span class="d-balloon db-5"></span>
+    </div>
+    <div class="dream-butterflies" aria-hidden="true">
+      <span class="dream-bf dream-bf-a"></span>
+      <span class="dream-bf dream-bf-b"></span>
+      <span class="dream-bf dream-bf-c"></span>
+      <span class="dream-bf dream-bf-d"></span>
+    </div>
+  </div>
+  <div id="app">
+    <!-- 1 开场 -->
+    <section id="scene-intro" class="scene scene-active" aria-label="开场">
+      <h1 class="intro-title intro-drift">
+        <span class="line">欢迎 <span id="intro-name"></span></span>
+        <span class="line accent">生日快乐!</span>
+      </h1>
+      <p class="intro-hint intro-hint-soft">星星在闪 · 慢慢看就好</p>
+      <button type="button" id="intro-next-btn" class="pixel-btn intro-next-btn">进入下一环节</button>
+    </section>
+
+    <!-- 2 蛋糕 -->
+    <section id="scene-cake" class="scene" aria-label="蛋糕夹心">
+      <div class="panel pixel-frame">
+        <h2 class="scene-title">为 <span id="cake-user-name"></span> 定制夹心蛋糕</h2>
+        <div class="cake-wrap">
+          <div class="pixel-cake" id="pixel-cake">
+            <div class="cake-top cake-layer" data-part="top"></div>
+            <div class="cake-frost"></div>
+            <div class="cake-bottom cake-layer" data-part="bottom"></div>
+            <div class="cake-plate"></div>
+          </div>
+        </div>
+        <div class="fillings">
+          <div class="filling-group">
+            <p class="label">上层夹心</p>
+            <div class="chip-row" id="top-options"></div>
+          </div>
+          <div class="filling-group">
+            <p class="label">下层夹心</p>
+            <div class="chip-row" id="bottom-options"></div>
+          </div>
+        </div>
+        <p id="cake-toast" class="toast pixel-pop" hidden>好选择!</p>
+        <button type="button" id="cake-done" class="pixel-btn" disabled>完成蛋糕</button>
+      </div>
+    </section>
+
+    <!-- 3 彩蛋庆祝 -->
+    <section id="scene-celebrate" class="scene" aria-label="庆祝">
+      <div class="celebrate-bg"></div>
+      <div class="ribbons" aria-hidden="true"></div>
+      <div class="burst-stars" aria-hidden="true"></div>
+      <p class="celebrate-text">蛋糕完成啦！</p>
+    </section>
+
+    <!-- 4 照片 -->
+    <section id="scene-gallery" class="scene" aria-label="回忆画廊">
+      <div class="panel pixel-frame gallery-panel">
+        <h2 class="scene-title">温暖回忆</h2>
+        <div class="gallery-viewport">
+          <button type="button" class="gallery-nav prev pixel-btn-sm" id="gallery-prev" aria-label="上一张">◀</button>
+          <div class="gallery-slide-wrap" id="gallery-slide-wrap">
+            <div class="gallery-slide" id="gallery-slide">
+              <div class="photo-frame" id="gallery-photo-frame">
+                <img id="gallery-img" src="" alt="回忆" />
+              </div>
+              <p class="gallery-caption" id="gallery-caption"></p>
+            </div>
+          </div>
+          <button type="button" class="gallery-nav next pixel-btn-sm" id="gallery-next" aria-label="下一张">▶</button>
+        </div>
+        <p class="gallery-counter" id="gallery-counter"></p>
+        <p class="gallery-dots" id="gallery-dots"></p>
+      </div>
+    </section>
+
+    <!-- 许愿星池 -->
+    <section id="scene-wish" class="scene" aria-label="许愿星池">
+      <div class="panel pixel-frame wish-panel">
+        <h2 class="scene-title">许愿星池</h2>
+        <p class="wish-sub">点一点星星，或按下「许个小愿望」——星尘会亮起来喵</p>
+        <div class="wish-stars" id="wish-stars" role="group" aria-label="许愿星星"></div>
+        <button type="button" id="wish-cast-btn" class="pixel-btn">许个小愿望</button>
+        <button type="button" id="wish-to-letter" class="pixel-btn" style="margin-top: 0.65rem">
+          展开书信卷轴
+        </button>
+      </div>
+    </section>
+
+    <!-- 5 书信 -->
+    <section id="scene-letter" class="scene" aria-label="书信">
+      <div class="scroll-outer pixel-frame scroll-frame">
+        <div class="scroll-knob top"></div>
+        <div class="scroll-body" id="scroll-body">
+          <div class="letter-pages" id="letter-pages"></div>
+        </div>
+        <div class="scroll-knob bottom"></div>
+        <p class="letter-nav-hint">滚动阅读 · 或点击下方翻页</p>
+        <div class="letter-controls">
+          <button type="button" class="pixel-btn-sm" id="letter-prev">上一页</button>
+          <span id="letter-page-indicator"></span>
+          <button type="button" class="pixel-btn-sm" id="letter-next">下一页</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <canvas id="magic-stardust-canvas" aria-hidden="true"></canvas>
+
+  <div class="guide-cat-root">
+    <div class="guide-cat-bubble" id="guide-cat-bubble" role="status" aria-live="polite" hidden></div>
+    <button type="button" class="guide-cat-hit" id="guide-cat-hit" aria-label="梦境引路猫（点击听它说话）">
+      <span class="guide-cat-visual" id="guide-cat-visual">
+        <span class="guide-cat-walk">
+          <span class="guide-cat-stack">
+            <span class="guide-cat-tail" aria-hidden="true"></span>
+            <svg
+              class="guide-cat-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 26 16"
+              width="72"
+              height="44"
+              shape-rendering="crispEdges"
+              aria-hidden="true"
+            >
+              <rect x="0" y="10" width="2" height="5" fill="#2d2d2d" />
+              <rect x="2" y="11" width="3" height="4" fill="#e8955a" />
+              <rect x="5" y="8" width="11" height="7" fill="#fff7f0" />
+              <rect x="7" y="9" width="4" height="3" fill="#e8955a" />
+              <rect x="12" y="10" width="2" height="3" fill="#2d2d2d" />
+              <rect x="14" y="5" width="11" height="8" fill="#fff7f0" />
+              <rect x="16" y="6" width="3" height="3" fill="#e8955a" />
+              <rect x="21" y="7" width="2" height="2" fill="#e8955a" />
+              <rect x="14" y="3" width="3" height="3" fill="#2d2d2d" />
+              <rect x="21" y="3" width="3" height="3" fill="#2d2d2d" />
+              <g class="guide-cat-eyes">
+                <rect x="16" y="7" width="1" height="2" fill="#1a1a1a" />
+                <rect x="20" y="7" width="1" height="2" fill="#1a1a1a" />
+              </g>
+              <rect x="18" y="9" width="1" height="1" fill="#f9a8d4" />
+            </svg>
+          </span>
+        </span>
+      </span>
+    </button>
+  </div>
+
+  <script defer src="dream_magic.js"></script>
+  <script defer src="main.js"></script>
+</body>
+</html>
+

@@ -425,8 +425,8 @@
         var left = 10 + Math.random() * 80;
         var size = 6 + Math.random() * 8;
         var delay = Math.random() * 0.4;
-        var duration = 7.2 + Math.random() * 0.8;
-        var colors = ["#ffb9d6", "#f8e1a1", "#d8c2ff", "#fff4dd", "#c9f2ff"];
+        var duration = 12 + Math.random() * 3;
+        var colors = ["#f8d7e4", "#e0f2fe", "#fef3c7", "#e9d5ff", "#fce7f3"];
         piece.style.left = left + "%";
         piece.style.width = size + "px";
         piece.style.height = size * 0.35 + "px";
@@ -436,7 +436,7 @@
         piece.style.transform = "rotate(" + (Math.random() * 90 - 45) + "deg)";
         confettiRoot.appendChild(piece);
       }
-      setTimeout(clearConfetti, 7800);
+      setTimeout(clearConfetti, 15000);
     }
     if (finalBtn) {
       finalBtn.addEventListener("click", function () {

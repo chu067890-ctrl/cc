@@ -910,6 +910,13 @@ body.wish-scene-active .wish-star {
   pointer-events: none;
 }
 
+.ribbons {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .ribbons::before,
 .ribbons::after {
   content: "";
@@ -918,37 +925,159 @@ body.wish-scene-active .wish-star {
   height: 20px;
   top: -24px;
   left: -12%;
-  border-radius: 12px;
+  border-radius: 12px 8px 16px 10px;
   background: linear-gradient(
     90deg,
-    rgba(255, 228, 240, 0.85),
-    rgba(254, 243, 199, 0.75),
-    rgba(224, 231, 255, 0.8),
-    rgba(209, 250, 229, 0.75)
+    rgba(248, 215, 228, 0.9),
+    rgba(254, 243, 199, 0.8),
+    rgba(224, 242, 254, 0.85),
+    rgba(233, 213, 255, 0.8),
+    rgba(252, 231, 243, 0.9)
   );
   border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 8px 28px rgba(244, 200, 220, 0.2);
+  box-shadow: 0 8px 28px rgba(244, 200, 220, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.3);
   animation: ribbonFallSoft 18s ease-in-out infinite;
-  transform: rotate(-2deg);
+  transform: rotate(-2deg) scaleY(0.8);
   opacity: 0.75;
+  filter: blur(0.5px) saturate(1.1);
+  backdrop-filter: blur(1px);
 }
 
 .ribbons::after {
   animation-delay: -6s;
   top: -40px;
-  transform: rotate(1.5deg);
+  transform: rotate(1.5deg) scaleY(1.2);
   opacity: 0.55;
+  border-radius: 8px 12px 10px 16px;
+  filter: blur(0.3px);
+}
+
+.ribbons-extra {
+  animation-duration: 14s;
+  animation-delay: -4s;
+}
+
+.ribbons-extra-2 {
+  animation-duration: 20s;
+  animation-delay: -8s;
 }
 
 .burst-stars {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(3px 3px at 28% 42%, rgba(255, 255, 255, 0.9), transparent),
-    radial-gradient(3px 3px at 72% 36%, rgba(254, 249, 195, 0.85), transparent),
-    radial-gradient(4px 4px at 50% 58%, rgba(255, 255, 255, 0.75), transparent),
-    radial-gradient(3px 3px at 44% 74%, rgba(224, 242, 254, 0.7), transparent);
-  animation: burstSoft 4s ease-in-out infinite;
+  background: radial-gradient(3px 3px at 28% 42%, rgba(247, 250, 255, 0.95), transparent),
+    radial-gradient(2px 4px at 72% 36%, rgba(240, 246, 255, 0.88), transparent),
+    radial-gradient(4px 2px at 50% 58%, rgba(230, 240, 255, 0.8), transparent),
+    radial-gradient(3px 3px at 44% 74%, rgba(244, 248, 255, 0.75), transparent),
+    radial-gradient(2px 2px at 15% 25%, rgba(255, 250, 242, 0.7), transparent),
+    radial-gradient(3px 3px at 85% 65%, rgba(241, 245, 255, 0.65), transparent),
+    radial-gradient(4px 3px at 10% 80%, rgba(235, 243, 255, 0.7), transparent),
+    radial-gradient(2px 3px at 90% 20%, rgba(247, 250, 255, 0.8), transparent);
+  animation: burstSoft 5s ease-in-out infinite;
+  filter: blur(0.22px);
+}
+
+.burst-stars-extra {
+  animation-duration: 6s;
+  animation-delay: -1s;
+}
+
+.burst-stars-extra-2 {
+  animation-duration: 5s;
+  animation-delay: -2s;
+}
+
+.falling-elements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.falling-star {
+  position: absolute;
+  font-size: 1.1rem;
+  opacity: 0.9;
+  animation: fallElement 11.8s ease-in-out infinite;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.95), 0 0 24px rgba(216, 226, 255, 0.45);
+  filter: blur(0.12px) drop-shadow(0 4px 16px rgba(232, 238, 255, 0.7)) saturate(1.15);
+  color: rgba(246, 250, 255, 0.95);
+  transform-origin: center;
+}
+
+.falling-star.fs-1 {
+  top: -12px;
+  left: 12%;
+  animation-delay: 0s;
+  animation-duration: 10s;
+}
+
+.falling-star.fs-2 {
+  top: -8px;
+  left: 28%;
+  animation-delay: 1.2s;
+  animation-duration: 10.8s;
+}
+
+.falling-star.fs-3 {
+  top: -14px;
+  left: 42%;
+  animation-delay: 0.8s;
+  animation-duration: 11.3s;
+}
+
+.falling-star.fs-4 {
+  top: -10px;
+  left: 58%;
+  animation-delay: 2.1s;
+  animation-duration: 11.9s;
+}
+
+.falling-star.fs-5 {
+  top: -11px;
+  left: 72%;
+  animation-delay: 1.6s;
+  animation-duration: 12.4s;
+}
+
+.falling-star.fs-6 {
+  top: -13px;
+  left: 82%;
+  animation-delay: 2.8s;
+  animation-duration: 12.8s;
+}
+
+.falling-star.fs-7 {
+  top: -9px;
+  left: 92%;
+  animation-delay: 3.4s;
+  animation-duration: 13s;
+}
+
+.falling-star.fs-8 {
+  top: -6px;
+  left: 4%;
+  animation-delay: 2.5s;
+  animation-duration: 11.5s;
+}
+
+@keyframes fallElement {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+    transform: translateY(10vh) rotate(45deg) scale(1);
+  }
+  85% {
+    opacity: 0.6;
+    transform: translateY(90vh) rotate(315deg) scale(1.1);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) scale(0.9);
+    opacity: 0;
+  }
 }
 
 .celebrate-text {
@@ -1177,10 +1306,13 @@ body.wish-scene-active .wish-star {
   position: absolute;
   top: -12px;
   opacity: 0;
-  border-radius: 999px;
+  border-radius: 50% 30% 70% 40% / 40% 60% 30% 50%;
   animation-name: confettiFall;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.3);
+  filter: blur(0.1px) saturate(1.1);
+  backdrop-filter: blur(0.2px);
 }
 
 @keyframes confettiFall {

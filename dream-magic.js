@@ -44,20 +44,20 @@
   function spawnParticle(x, y, opts) {
     opts = opts || {};
     var strong = opts.strong || burstBoost > 0 || isWishScene;
-    var baseChance = isWishScene ? 0.26 : 0.09;
-    var n = strong ? (opts.burst ? 1 : 0.58) : baseChance;
+    var baseChance = isWishScene ? 0.6 : 0.3;
+    var n = strong ? (opts.burst ? 1 : 0.8) : baseChance;
     if (Math.random() > n && !opts.force) return;
     var ang = Math.random() * Math.PI * 2;
-    var sp = (strong ? 0.35 : 0.15) + Math.random() * (strong ? 0.9 : 0.35);
+    var sp = (strong ? 0.5 : 0.3) + Math.random() * (strong ? 1.2 : 0.5);
     particles.push({
-      x: x + (Math.random() - 0.5) * 4,
-      y: y + (Math.random() - 0.5) * 4,
+      x: x + (Math.random() - 0.5) * 8,
+      y: y + (Math.random() - 0.5) * 8,
       vx: Math.cos(ang) * sp,
-      vy: Math.sin(ang) * sp - (strong ? 0.25 : 0.12),
-      life: strong ? 0.85 + Math.random() * 0.35 : 0.45 + Math.random() * 0.25,
-      r: strong ? 1.2 + Math.random() * 2.2 : 0.7 + Math.random() * 1.2,
-      a: strong ? 0.55 + Math.random() * 0.25 : 0.22 + Math.random() * 0.12,
-      hue: Math.random() < 0.55 ? "warm" : "cool",
+      vy: Math.sin(ang) * sp - (strong ? 0.4 : 0.2),
+      life: strong ? 1.2 + Math.random() * 0.6 : 0.8 + Math.random() * 0.5,
+      r: strong ? 2.0 + Math.random() * 4.0 : 1.5 + Math.random() * 3.0,
+      a: strong ? 0.8 + Math.random() * 0.2 : 0.5 + Math.random() * 0.2,
+      hue: Math.random() < 0.7 ? "warm" : "cool",
     });
   }
 
@@ -111,7 +111,7 @@
     var my = e.clientY;
     var now = performance.now();
     var dt = now - lastEmit;
-    var minGap = isWishScene ? 22 : 42;
+    var minGap = isWishScene ? 15 : 25;
     if (dt < minGap) {
       lastMx = mx;
       lastMy = my;
@@ -157,6 +157,48 @@
     loop();
   }
 
+  function createShootingStar() {
+    var container = $("shooting-stars");
+    if (!container) return;
+    var star = document.createElement("span");
+    star.className = "shooting-star";
+    var startTop = 6 + Math.random() * 22;
+    var duration = 1.8 + Math.random() * 1.2;
+    var length = 100 + Math.random() * 80;
+    var rotate = 18 + Math.random() * 18;
+    var colorSets = [
+      ["rgba(255, 235, 190, 0.22)", "rgba(255, 237, 197, 0.48)"],
+      ["rgba(255, 209, 229, 0.22)", "rgba(255, 225, 241, 0.48)"],
+      ["rgba(223, 200, 255, 0.22)", "rgba(236, 226, 255, 0.48)"]
+    ];
+    var colors = colorSets[(Math.random() * colorSets.length) | 0];
+    star.style.top = startTop + "%";
+    star.style.left = "100%";
+    star.style.width = length + "px";
+    star.style.setProperty("--star-length", length + "px");
+    star.style.setProperty("--star-duration", duration + "s");
+    star.style.setProperty("--star-rotate", rotate + "deg");
+    star.style.setProperty("--shooting-color-1", colors[0]);
+    star.style.setProperty("--shooting-color-2", colors[1]);
+    container.appendChild(star);
+    star.addEventListener("animationend", function () {
+      if (star && star.parentNode) {
+        star.parentNode.removeChild(star);
+      }
+    });
+  }
+
+  function initShootingStars() {
+    function scheduleNext() {
+      var delay = 3000 + Math.random() * 4000;
+      setTimeout(function () {
+        createShootingStar();
+        scheduleNext();
+      }, delay);
+    }
+    scheduleNext();
+  }
+
   function setWishScene(active) {
     isWishScene = !!active;
     document.body.classList.toggle("wish-scene-active", !!active);
@@ -177,20 +219,32 @@
 
   function applyWandCursor() {
     var svg =
-      '<svg xmlns="http://www.w3.org/2000/svg" width="44" height="52" viewBox="0 0 44 52">' +
-      '<circle cx="22" cy="13" r="9" fill="#fef3c7" opacity="0.52"/>' +
-      '<path fill="#fffbeb" stroke="#c4a574" stroke-width="1.25" stroke-linejoin="round" d="M22 4l2.4 6 6.5.5-5 4 1.6 6.2-5.5-3.3-5.5 3.3L18 14.5l-5-4 6.5-.5z"/>' +
-      '<path fill="none" stroke="#7c4a2a" stroke-width="3.8" stroke-linecap="round" d="M22 20q-2.5 9 1.5 18q1.5 6-1 14"/>' +
-      '<path fill="none" stroke="#f8ecd4" stroke-width="1.45" stroke-linecap="round" opacity="0.9" d="M21 21q1 7 0.5 15"/>' +
-      "</svg>";
+      '<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">' +
+      '<defs>' +
+      '<radialGradient id="glow" cx="50%" cy="40%" r="70%">' +
+      '<stop offset="0%" stop-color="#fff7d4" stop-opacity="1"/>' +
+      '<stop offset="60%" stop-color="#f8d17a" stop-opacity="0.8"/>' +
+      '<stop offset="100%" stop-color="#f3b63f" stop-opacity="0"/>' +
+      '</radialGradient>' +
+      '</defs>' +
+      '<circle cx="22" cy="22" r="18" fill="url(#glow)" opacity="0.85"/>' +
+      '<path d="M14 24 C12 18 18 14 22 14 C26 14 32 18 30 24 C30 28 28 32 22 34 C16 32 14 28 14 24 Z" fill="#f5d77a" stroke="#b58f2c" stroke-width="1.4"/>' +
+      '<path d="M11 20 C9 16 13 13 17 15" fill="none" stroke="#b58f2c" stroke-width="2" stroke-linecap="round"/>' +
+      '<path d="M33 20 C35 16 31 13 27 15" fill="none" stroke="#b58f2c" stroke-width="2" stroke-linecap="round"/>' +
+      '<circle cx="17.5" cy="23.5" r="1.8" fill="#603d06"/>' +
+      '<circle cx="26.5" cy="23.5" r="1.8" fill="#603d06"/>' +
+      '<path d="M20 29 Q22 31 24 29" fill="none" stroke="#7c4a2a" stroke-width="1.4" stroke-linecap="round"/>' +
+      '<path d="M22 6 L22 2" stroke="#fbe5a4" stroke-width="2" stroke-linecap="round" opacity="0.9"/>' +
+      '<path d="M26 8 L29 4" stroke="#fbe5a4" stroke-width="2" stroke-linecap="round" opacity="0.8"/>' +
+      '</svg>';
     var enc = encodeURIComponent(svg);
     document.documentElement.style.setProperty(
       "--cursor-wand",
-      'url("data:image/svg+xml,' + enc + '") 14 46, auto'
+      'url("data:image/svg+xml,' + enc + '") 22 22, auto'
     );
     document.documentElement.style.setProperty(
       "--cursor-wand-pointer",
-      'url("data:image/svg+xml,' + enc + '") 14 46, pointer'
+      'url("data:image/svg+xml,' + enc + '") 22 22, pointer'
     );
   }
 
@@ -311,6 +365,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     applyWandCursor();
     initStardust();
+    initShootingStars();
     initCat();
     initWishPage();
     buildWishStars();

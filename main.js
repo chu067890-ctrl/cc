@@ -38,7 +38,7 @@
     letterIntro:
       "亲爱的蔡诗晨：\n今天是你的生日，我想把这些温暖的回忆和小小心意送给你……\n希望你每天都开心、幸福，就像每次看到你笑容一样美好。\n爱你的朋友",
     letterBody:
-      "亲爱的诗晨：\n很多个时刻，我们在相见，很多个世界，我们在重逢。\n首先，生日快乐！\n很荣幸与蔡蔡从少年走到青年，我想你的青年时期也会有新的迷茫和困难，就像少年时期一样。但又不一样。少年时期，满腔热血，那时候的我们什么都不害怕。谈天说地，说着彼此的梦想欢笑。\n流年些许逝，我总是不停地回想，如今浮现在脑海的是，某一天傍晚，我奔跑着去寝室洗头发，那头走廊里金色的光芒震慑了我。好似我是活在金色里，死在金色里。\n于是不由自主想到死亡。我想我会这样走向死亡吗？\n阒寂无声的傍晚。令我不安的傍晚。思及神往的傍晚。\n于是带着那样的想法，回到当下的空间里，我想，我要和值得的人，我爱的人，愿意相伴的人在一起。如果不在一起，那也要“在一起”。\n因为我们可能走向很多个方向，但是不会忘记彼此所在的方向。\n在过去的信里，我窥见我的狂妄，我把那些说给你听，我看见我的迷茫，我把那些分享给你……我们就这样日日夜夜陪伴着彼此，直到这个节点。这个节点之后，我们还在。下个节点之后，我们还在。新的人生阶段，有困顿，有希望，也还有熟悉的人陪在你身侧。\n我也想就这样看着你走在阳光的大道上，那里会布满金色的光辉，就在我看见的那样。只是那是走向希望的。正因我们如此年轻。\n从前说，不想失去初心。现在想说，只要我们还是我们，我们就是完满的。只要没有背叛自我，哪个方向都是方向。\n期望将来的朋友爱人在你身侧爱你。我没办法在的地方也有很多人照顾你陪伴你。\n献给蔡蔡唯一的二十四岁。\n爱您。——爱你的cc",
+      "亲爱的诗晨：\n很多个时刻，我们在相见，很多个世界，我们在重逢。\n首先，生日快乐！\n很荣幸与蔡蔡从少年走到青年，我想你的青年时期也会有新的迷茫和困难，就像少年时期一样。但又不一样。少年时期，满腔热血，那时候的我们什么都不害怕。谈天说地，说着彼此的梦想欢笑。\n流年些许逝，我总是不停地回想，如今浮现在脑海的是，某一天傍晚，我奔跑着去寝室洗头发，那头走廊里金色的光芒震慑了我。好似我是活在金色里，死在金色里。\n于是不由自主想到死亡。我想我会这样走向死亡吗？\n阒寂无声的傍晚。令我不安的傍晚。思及神往的傍晚。\n于是带着那样的想法，回到当下的空间里，我想，我要和值得的人，我爱的人，愿意相伴的人在一起。如果不在一起，那也要“在一起”。\n因为我们可能走向很多个方向，但是不会忘记彼此所在的方向。\n在过去的信里，我窥见我的狂妄，我把那些说给你听，我看见我的迷茫，我把那些分享给你……我们就这样日日夜夜陪伴着彼此，直到这个节点。这个节点之后，我们还在。下个节点之后，我们还在。新的人生阶段，有困顿，有希望，也还有熟悉的人陪在你身侧。\n我也想就这样看着你走在阳光的大道上，那里会布满金色的光辉，就在我看见的那样。只是那是走向希望的。正因我们如此年轻。\n从前说，不想失去初心。现在想说，只要我们还是我们，我们就是完满的。只要没有背叛自我，哪个方向都是方向。\n期望将来的朋友爱人在你身侧爱你。我没办法在的地方也有很多人照顾你陪伴你。\n献给蔡蔡唯一的二十四岁。\n爱您。\n——爱你的cc",
     timings: {
       celebrateMs: 2600,
     },
@@ -400,6 +400,64 @@
     panel.appendChild(btn);
   }
 
+  function initFinalScene() {
+    var finalBtn = $("letter-final-btn");
+    var finalComment = $("final-comment");
+    var finalGallery = $("final-gallery");
+    var confettiRoot = $("final-confetti");
+    var finalTexts = [
+      "如此年轻的你我",
+      "누난 너무 예뻐서",
+      "姐姐，我们见面吧~",
+    ];
+    function clearConfetti() {
+      if (!confettiRoot) return;
+      confettiRoot.innerHTML = "";
+      confettiRoot.classList.remove("final-confetti-active");
+    }
+    function createConfetti() {
+      if (!confettiRoot) return;
+      clearConfetti();
+      confettiRoot.classList.add("final-confetti-active");
+      for (var i = 0; i < 32; i++) {
+        var piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        var left = 10 + Math.random() * 80;
+        var size = 6 + Math.random() * 8;
+        var delay = Math.random() * 0.4;
+        var duration = 7.2 + Math.random() * 0.8;
+        var colors = ["#ffb9d6", "#f8e1a1", "#d8c2ff", "#fff4dd", "#c9f2ff"];
+        piece.style.left = left + "%";
+        piece.style.width = size + "px";
+        piece.style.height = size * 0.35 + "px";
+        piece.style.background = colors[(Math.random() * colors.length) | 0];
+        piece.style.animationDelay = delay + "s";
+        piece.style.animationDuration = duration + "s";
+        piece.style.transform = "rotate(" + (Math.random() * 90 - 45) + "deg)";
+        confettiRoot.appendChild(piece);
+      }
+      setTimeout(clearConfetti, 7800);
+    }
+    if (finalBtn) {
+      finalBtn.addEventListener("click", function () {
+        showScene("scene-final");
+      });
+    }
+    if (finalGallery) {
+      finalGallery.addEventListener("click", function (event) {
+        var button = event.target.closest(".final-photo-button");
+        if (!button) return;
+        var index = Number(button.dataset.finalIndex);
+        if (!isNaN(index) && finalComment) {
+          finalComment.textContent = finalTexts[index] || "点击照片看评论";
+        }
+        if (index === 2) {
+          createConfetti();
+        }
+      });
+    }
+  }
+
 
   function initWishFallback() {
     var wrap = $("wish-stars");
@@ -447,6 +505,7 @@
     renderGallery();
     buildLetter();
     initWishFallback();
+    initFinalScene();
     showScene("scene-intro");
   }
 

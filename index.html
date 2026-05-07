@@ -41,7 +41,7 @@
         <span class="line big-name" id="intro-name"></span>
         <span class="line accent">生日快乐!</span>
       </h1>
-      <button type="button" id="intro-next-btn" class="pixel-btn intro-next-btn">进入下一环节</button>
+      <button type="button" id="intro-next-btn" class="pixel-btn intro-next-btn">enter</button>
     </section>
 
     <!-- 2 蛋糕 -->
@@ -77,6 +77,7 @@
       <div class="ribbons" aria-hidden="true"></div>
       <div class="burst-stars" aria-hidden="true"></div>
       <p class="celebrate-text">蛋糕完成啦！</p>
+      <p class="celebrate-subtext">记得把你选择的夹心告诉 ta 哦~</p>
     </section>
 
     <!-- 4 照片 -->
@@ -127,7 +128,29 @@
           <span id="letter-page-indicator"></span>
           <button type="button" class="pixel-btn-sm" id="letter-next">下一页</button>
         </div>
+        <button type="button" id="letter-final-btn" class="pixel-btn" style="margin-top: 0.85rem;">最后一幕</button>
       </div>
+    </section>
+
+    <!-- 6 最后一幕 -->
+    <section id="scene-final" class="scene" aria-label="最后一幕">
+      <div class="panel pixel-frame final-panel">
+        <h2 class="scene-title">最后的瞬间</h2>
+        <p class="final-sub">三张回忆照，探头的光辉静静照亮这段故事</p>
+        <div class="final-gallery" id="final-gallery">
+          <button type="button" class="final-photo-frame final-photo-button" data-final-index="0" aria-label="第一张照片">
+            <img src="assets/姐姐01.jpeg" alt="第一张回忆照片" />
+          </button>
+          <button type="button" class="final-photo-frame final-photo-button" data-final-index="1" aria-label="第二张照片">
+            <img src="assets/姐姐02.jpg" alt="第二张回忆照片" />
+          </button>
+          <button type="button" class="final-photo-frame final-photo-empty final-photo-button" data-final-index="2" aria-label="空白相片位置">
+            <span class="final-photo-empty-text">空白相片</span>
+          </button>
+        </div>
+        <p class="final-comment" id="final-comment">点击照片看评论</p>
+      </div>
+      <div class="final-confetti" id="final-confetti" aria-hidden="true"></div>
     </section>
   </div>
 

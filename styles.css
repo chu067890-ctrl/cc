@@ -1086,6 +1086,120 @@ body.wish-scene-active .wish-star {
   transform: scale(1.12);
 }
 
+/* ---------- 最后一幕 ---------- */
+.final-panel {
+  max-width: 700px;
+}
+
+.final-sub {
+  margin: 0.55rem 0 1rem;
+  color: #8b7188;
+  opacity: 0.88;
+  text-align: center;
+  font-size: 0.98rem;
+}
+
+.final-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(90px, 1fr));
+  gap: 0.85rem;
+  align-items: stretch;
+  margin-bottom: 1rem;
+}
+
+.final-photo-frame {
+  position: relative;
+  min-height: 152px;
+  padding: 0.5rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: var(--glass-shadow);
+  background: rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+}
+
+.final-photo-frame:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow), 0 0 30px rgba(255, 223, 172, 0.24);
+}
+
+.final-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.final-photo-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(83, 63, 96, 0.8);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.final-photo-empty-text {
+  padding: 0.75rem 0.6rem;
+}
+
+.final-comment {
+  margin: 0;
+  min-height: 2.4rem;
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 18px;
+}
+
+.final-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.final-confetti-active {
+  opacity: 1;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -12px;
+  opacity: 0;
+  border-radius: 999px;
+  animation-name: confettiFall;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(84vh) translateX(20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
 /* ---------- 书信 ---------- */
 #scene-letter {
   background: rgba(255, 252, 254, 0.12);

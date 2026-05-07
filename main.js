@@ -23,50 +23,17 @@
     /** 照片与评论顺序与提供的素材一致 */
     photos: [
       { url: "assets/photo01.png", comment: "拳击有力量！" },
-      {
-        url: "assets/photo02.png",
-        comment: "有种你来试试看的感觉，所以又选了一张，pick❤",
-      },
-      { url: "assets/photo03.png", comment: "y2k风格，酷酷的，喜欢(≧∇≦)ﾉ" },
-      {
-        url: "assets/photo04.png",
-        comment: "又选一张，有种大人感的千禧年间的洒拓，语言打结了哈哈~",
-      },
-      { url: "assets/photo05.png", comment: "探头探脑，蝴蝶结非常合适，萌死我了~" },
-      {
-        url: "assets/photo06.png",
-        comment:
-          "嗯这个配色很千禧，多巴胺撞色很帅，姿态婉约，气质很独特的一张",
-      },
-      {
-        url: "assets/photo07.png",
-        comment:
-          "这张发现是12岁的时候有点惊讶，太可爱了，萌之，我还做了包装袋的图，抠图排版了咧，可惜没用上，会给你看哒~",
-      },
-      {
-        url: "assets/photo08.png",
-        comment: "这个就很美式乡村田野风格公主，很美丽端坐，稀饭",
-      },
-      {
-        url: "assets/photo09.png",
-        comment:
-          "古典风格的一张，居然小小的年纪很像大人，很神奇呢，温婉的感觉，神态很可爱~",
-      },
-      {
-        url: "assets/photo10.png",
-        comment:
-          "十八岁，非常非常美丽的一张公主裙照片，其他几张也很美，让我想到刘亦菲的孔雀公主那张，在我看来是年纪与风格风味最为融合的一张，喜欢！",
-      },
-      {
-        url: "assets/photo11.png",
-        comment:
-          "啊一下子长大了，青春期的年纪，也是我们第一年初识彼此的年纪，这时候有了少年的成熟感，有点想喊姐姐~",
-      },
-      {
-        url: "assets/photo12.png",
-        comment:
-          "最打动我的一张，配色蓝黄撞色，发型轻熟，戴着田园风的帽子，淑女婉约文艺风，美丽的宝宝，是姐姐和妹妹的综合体~",
-      },
+      { url: "assets/photo02.png", comment: "有种你来试试看的感觉，所以又选了一张，pick❤" },
+      { url: "assets/photo03.png", comment: "探头探脑，蝴蝶结非常合适，萌死我了~" },
+      { url: "assets/photo04.png", comment: "y2k风格，酷酷的，喜欢(≧∇≦)ﾉ" },
+      { url: "assets/photo05.png", comment: "又选一张，有种大人感的千禧年间的洒拓，语言打结了哈哈~" },
+      { url: "assets/photo06.png", comment: "嗯这个配色很千禧，多巴胺撞色很帅，姿态婉约，气质很独特的一张" },
+      { url: "assets/photo07.png", comment: "这张发现是12岁的时候有点惊讶，太可爱了，萌之，我还做了包装袋的图，抠图排版了咧，可惜没用上，会给你看哒~" },
+      { url: "assets/photo08.png", comment: "这个就很美式乡村田野风格公主，很美丽端坐，稀饭" },
+      { url: "assets/photo09.png", comment: "古典风格的一张，居然小小的年纪很像大人，很神奇呢，温婉的感觉，神态很可爱~" },
+      { url: "assets/photo10.png", comment: "啊一下子长大了，青春期的年纪，也是我们第一年初识彼此的年纪，这时候有了少年的成熟感，有点想喊姐姐~" },
+      { url: "assets/photo11.png", comment: "十八岁，非常非常美丽的一张公主裙照片，其他几张也很美，让我想到刘亦菲的孔雀公主那张，在我看来是年纪与风格风味最为融合的一张，喜欢！" },
+      { url: "assets/photo12.png", comment: "最打动我的一张，配色蓝黄撞色，发型轻熟，戴着田园风的帽子，淑女婉约文艺风，美丽的宝宝，是姐姐和妹妹的综合体~" },
     ],
     letterIntro:
       "亲爱的蔡诗晨：\n今天是你的生日，我想把这些温暖的回忆和小小心意送给你……\n希望你每天都开心、幸福，就像每次看到你笑容一样美好。\n爱你的朋友",
@@ -433,11 +400,53 @@
     panel.appendChild(btn);
   }
 
+
+  function initWishFallback() {
+    var wrap = $("wish-stars");
+    if (wrap && wrap.children.length === 0) {
+      wrap.innerHTML = "";
+      for (var i = 0; i < 14; i++) {
+        var star = document.createElement("button");
+        star.type = "button";
+        star.className = "wish-star";
+        star.textContent = "✦";
+        star.setAttribute("aria-label", "许愿星星 " + (i + 1));
+        var sz = 34 + ((i * 5) % 18);
+        star.style.width = sz + "px";
+        star.style.height = sz + "px";
+        star.style.animationDelay = i * 0.22 + "s";
+        star.addEventListener("click", function () {
+          this.classList.toggle("lit");
+        });
+        wrap.appendChild(star);
+      }
+    }
+
+    var castBtn = $("wish-cast-btn");
+    if (castBtn) {
+      castBtn.addEventListener("click", function () {
+        document.querySelectorAll(".wish-star").forEach(function (star, index) {
+          setTimeout(function () {
+            star.classList.add("lit");
+          }, index * 90);
+        });
+      });
+    }
+
+    var letterBtn = $("wish-to-letter");
+    if (letterBtn) {
+      letterBtn.addEventListener("click", function () {
+        enterLetterScene();
+      });
+    }
+  }
+
   function init() {
     initIntro();
     initCake();
     renderGallery();
     buildLetter();
+    initWishFallback();
     showScene("scene-intro");
   }
 

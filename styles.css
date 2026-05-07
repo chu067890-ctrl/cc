@@ -1325,3 +1325,54 @@ body.wish-scene-active .wish-star {
     width: 100%;
   }
 }
+
+
+/* ---------- 修复版：许愿星星可见与点亮状态 ---------- */
+.wish-star {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 34px;
+  min-height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.82) !important;
+  padding: 0 !important;
+  border-radius: 50%;
+  cursor: var(--cursor-wand-pointer);
+  color: rgba(255, 246, 180, 0.9);
+  font-size: 1.18rem;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.34) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 16px rgba(253, 224, 171, 0.72),
+    0 6px 20px rgba(244, 180, 220, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+  animation: wishStarTwinkle 4s ease-in-out infinite;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, color 0.35s ease;
+}
+
+.wish-star:hover {
+  transform: scale(1.13) translateY(-2px);
+  color: #fff6b8;
+  box-shadow:
+    0 0 24px rgba(254, 249, 195, 0.95),
+    0 0 38px rgba(249, 168, 212, 0.48) !important;
+}
+
+.wish-star.lit {
+  opacity: 1 !important;
+  color: #fff7b8;
+  background: rgba(255, 246, 210, 0.58) !important;
+  box-shadow:
+    0 0 28px rgba(254, 249, 195, 1),
+    0 0 48px rgba(249, 168, 212, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+#wish-to-letter,
+#wish-cast-btn {
+  position: relative;
+  z-index: 3;
+}

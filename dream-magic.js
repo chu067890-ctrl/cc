@@ -266,6 +266,7 @@
       var b = document.createElement("button");
       b.type = "button";
       b.className = "wish-star";
+      b.textContent = "✦";
       b.setAttribute("aria-label", "星星 " + (i + 1));
       var sz = 14 + ((i * 7) % 18);
       var op = 0.45 + ((i * 13) % 40) / 100;
@@ -274,6 +275,7 @@
       b.style.opacity = String(op);
       b.style.animationDelay = i * 0.35 + "s";
       b.addEventListener("click", function (ev) {
+        this.classList.toggle("lit");
         burstAt(ev.clientX, ev.clientY, 36);
         showBubble("叮——愿望被星星记住喵～", 3200);
       });
@@ -286,6 +288,11 @@
     var btnLetter = $("wish-to-letter");
     if (btnCast) {
       btnCast.addEventListener("click", function (ev) {
+        document.querySelectorAll(".wish-star").forEach(function (star, index) {
+          setTimeout(function () {
+            star.classList.add("lit");
+          }, index * 90);
+        });
         burstAt(ev.clientX, ev.clientY, 48);
         showBubble("呼啦～施了一次小魔法喵～", 3500);
       });

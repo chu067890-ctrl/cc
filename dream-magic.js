@@ -44,20 +44,20 @@
   function spawnParticle(x, y, opts) {
     opts = opts || {};
     var strong = opts.strong || burstBoost > 0 || isWishScene;
-    var baseChance = isWishScene ? 0.6 : 0.3;
-    var n = strong ? (opts.burst ? 1 : 0.8) : baseChance;
+    var baseChance = isWishScene ? 0.75 : 0.45;
+    var n = strong ? (opts.burst ? 1 : 0.86) : baseChance;
     if (Math.random() > n && !opts.force) return;
     var ang = Math.random() * Math.PI * 2;
-    var sp = (strong ? 0.5 : 0.3) + Math.random() * (strong ? 1.2 : 0.5);
+    var sp = (strong ? 0.55 : 0.35) + Math.random() * (strong ? 1.3 : 0.55);
     particles.push({
       x: x + (Math.random() - 0.5) * 8,
       y: y + (Math.random() - 0.5) * 8,
       vx: Math.cos(ang) * sp,
-      vy: Math.sin(ang) * sp - (strong ? 0.4 : 0.2),
-      life: strong ? 1.2 + Math.random() * 0.6 : 0.8 + Math.random() * 0.5,
-      r: strong ? 2.0 + Math.random() * 4.0 : 1.5 + Math.random() * 3.0,
-      a: strong ? 0.8 + Math.random() * 0.2 : 0.5 + Math.random() * 0.2,
-      hue: Math.random() < 0.7 ? "warm" : "cool",
+      vy: Math.sin(ang) * sp - (strong ? 0.42 : 0.22),
+      life: strong ? 1.25 + Math.random() * 0.5 : 0.85 + Math.random() * 0.45,
+      r: strong ? 2.2 + Math.random() * 4.2 : 1.6 + Math.random() * 3.2,
+      a: strong ? 0.82 + Math.random() * 0.18 : 0.55 + Math.random() * 0.18,
+      hue: Math.random() < 0.72 ? "warm" : "cool",
     });
   }
 
@@ -111,7 +111,7 @@
     var my = e.clientY;
     var now = performance.now();
     var dt = now - lastEmit;
-    var minGap = isWishScene ? 15 : 25;
+    var minGap = isWishScene ? 14 : 18;
     if (dt < minGap) {
       lastMx = mx;
       lastMy = my;

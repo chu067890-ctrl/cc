@@ -24,8 +24,8 @@
     photos: [
       { url: "assets/photo01.png", comment: "拳击有力量！" },
       { url: "assets/photo02.png", comment: "有种你来试试看的感觉，所以又选了一张，pick❤" },
-      { url: "assets/photo03.png", comment: "探头探脑，蝴蝶结非常合适，萌死我了~" },
-      { url: "assets/photo04.png", comment: "y2k风格，酷酷的，喜欢(≧∇≦)ﾉ" },
+      { url: "assets/photo03.png", comment: "y2k风格，酷酷的，喜欢(≧∇≦)ﾉ" },
+      { url: "assets/photo04.png", comment: "探头探脑，蝴蝶结非常合适，萌死我了~" },
       { url: "assets/photo05.png", comment: "又选一张，有种大人感的千禧年间的洒拓，语言打结了哈哈~" },
       { url: "assets/photo06.png", comment: "嗯这个配色很千禧，多巴胺撞色很帅，姿态婉约，气质很独特的一张" },
       { url: "assets/photo07.png", comment: "这张发现是12岁的时候有点惊讶，太可爱了，萌之，我还做了包装袋的图，抠图排版了咧，可惜没用上，会给你看哒~" },
